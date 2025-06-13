@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎡 Spin the Wheel – EcoShop</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      color: #00b894;
+      margin-bottom: 2rem;
+    }
+    canvas {
+      border: 10px solid #00b894;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .pointer {
+      width: 0; height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 30px solid #00b894;
+      margin-bottom: -20px;
+    }
+    button {
+      margin-top: 2rem;
+      padding: 0.7rem 1.5rem;
+      background: #00b894;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      color: #2d6a4f;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎯 Spin the Eco-Wheel!</h1>
+  <div class="pointer"></div>
+  <canvas id="wheelCanvas" width="300" height="300"></canvas>
+
+  <button onclick="spin()">Spin</button>
+  <div id="result"></div>
+
+  <script>
+    const prizes = [
+      "10% OFF Coupon",
+      "Free Shipping",
+      "15% OFF Coupon",
+      "₹20 Cashback",
+      "200 Eco-Points"
+    ];
+
+    const colors = ["#e9f7f1", "#c8e6c9", "#fce4ec", "#fff9c4", "#f8bbd0"];
+    const canvas = document.getElementById("wheelCanvas");
+    const ctx = canvas.getContext("2d");
+    const radius = canvas.width / 2;
+    const sliceAngle = 2 * Math.PI / prizes.length;
+
+    let angle = 0;
+    let spinning = false;
+
+    function drawWheel() {
+      for (let i = 0; i < prizes.length; i++) {
+        const start = angle + i * sliceAngle;
+        const end = start + sliceAngle;
+
+        // Draw slice
+        ctx.beginPath();
+        ctx.moveTo(radius, radius);
+        ctx.arc(radius, radius, radius, start, end);
+        ctx.fillStyle = colors[i];
+        ctx.fill();
+        ctx.stroke();
+
+        // Draw text
+        ctx.save();
+        ctx.translate(radius, radius);
+        ctx.rotate(start + sliceAngle / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = "#333";
+        ctx.font = "14px Segoe UI";
+        ctx.fillText(prizes[i], radius - 10, 5);
+        ctx.restore();
+      }
+    }
+
+    function spin() {
+      if (spinning) return;
+      spinning = true;
+      const resultEl = document.getElementById("result");
+      resultEl.textContent = "";
+
+      let spinAngle = Math.floor(3600 + Math.random() * 720);
+      let spinTime = 5000;
+      let finalAngle = spinAngle * Math.PI / 180;
+      let start = performance.now();
+
+      function animate(t) {
+        const progress = Math.min((t - start) / spinTime, 1);
+        angle = finalAngle * easeOutCubic(progress);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawWheel();
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          const deg = (angle % (2 * Math.PI));
+          const index = Math.floor((prizes.length - (deg / sliceAngle)) % prizes.length);
+          resultEl.textContent = "🎁 You won: " + prizes[index];
+          spinning = false;
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    drawWheel();
+  </script>
+</body>
+</html>

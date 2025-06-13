@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EcoShop – My Cart</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f6;
+      padding: 2rem;
+      color: #2d6a4f;
+    }
+    h1 {
+      text-align: center;
+      color: #00b894;
+    }
+    .cart-item {
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      margin: 1rem auto;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      margin-right: 1rem;
+    }
+    .item-details {
+      flex-grow: 1;
+    }
+    .item-details h3 {
+      margin: 0;
+    }
+    .price {
+      font-weight: bold;
+      color: #00664e;
+    }
+    .total {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      color: #006a4e;
+    }
+    .checkout-btn {
+      display: block;
+      margin: 2rem auto 0;
+      background: #00b894;
+      color: white;
+      padding: 0.7rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🛒 My Cart</h1>
+
+  <div class="cart-item">
+    <img src="1-105.webp" alt="Product 1">
+    <div class="item-details">
+      <h3>Herbal Face Wash</h3>
+      <p class="price">₹199</p>
+    </div>
+    <span>Qty: 1</span>
+  </div>
+
+  <div class="cart-item">
+    <img src="https://source.unsplash.com/60x60/?bamboo,toothbrush" alt="Product 2">
+    <div class="item-details">
+      <h3>Bamboo Toothbrush</h3>
+      <p class="price">₹59</p>
+    </div>
+    <span>Qty: 2</span>
+  </div>
+
+  <div class="cart-item">
+    <img src="https://source.unsplash.com/60x60/?organic,ghee" alt="Product 3">
+    <div class="item-details">
+      <h3>Bilona Cow Ghee</h3>
+      <p class="price">₹599</p>
+    </div>
+    <span>Qty: 1</span>
+  </div>
+
+  <div class="total">🧾 Total: ₹916</div>
+
+  <button class="checkout-btn">Proceed to Checkout</button>
+
+</body>
+</html>
