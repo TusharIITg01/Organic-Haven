@@ -8,7 +8,7 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f6;
+      background: #95ecd6;
       padding: 2rem;
       color: #2d6a4f;
     }
@@ -16,8 +16,19 @@
       text-align: center;
       color: #00b894;
     }
+    .Searchbar input {
+      margin: 15px;
+      margin-left: 110px;
+      width: 100%;
+      max-width: 200px;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: #006a4e;
+    }
     .cart-item {
-      background: white;
+      background: rgb(181, 249, 224);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -41,7 +52,7 @@
     }
     .price {
       font-weight: bold;
-      color: #00664e;
+      color: #076852;
     }
     .total {
       text-align: center;
@@ -52,7 +63,7 @@
     .checkout-btn {
       display: block;
       margin: 2rem auto 0;
-      background: #00b894;
+      background: #1b584c;
       color: white;
       padding: 0.7rem 2rem;
       border: none;
@@ -94,7 +105,9 @@
   </div>
 
   <div class="total">🧾 Total: ₹916</div>
-
+<div class="Searchbar">
+      <input type="text" placeholder="Enter  the discount code..." size="45">
+    </div>
   <button class="checkout-btn">Proceed to Checkout</button>
 
 </body>

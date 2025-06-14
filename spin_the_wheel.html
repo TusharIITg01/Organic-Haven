@@ -3,55 +3,92 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎡 Spin the Wheel – EcoShop</title>
+  <title>🎡 Spin the Eco-Wheel – EcoShop</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f6;
+      background: url('./confetti.png') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      margin: 0;
+      text-align: center;
     }
+
+    .header {
+         background: rgb(155, 231, 155);
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      margin-bottom: 1rem;
+    }
+
     h1 {
-      color: #00b894;
-      margin-bottom: 2rem;
+      color: #d35400;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+   
     }
-    canvas {
-      border: 10px solid #00b894;
-      border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+
+    .subtext {
+      color: #7f8c8d;
+      font-size: 1rem;
     }
+
     .pointer {
       width: 0; height: 0;
       border-left: 15px solid transparent;
       border-right: 15px solid transparent;
-      border-bottom: 30px solid #00b894;
+      border-bottom: 30px solid #f39c12;
       margin-bottom: -20px;
     }
+
+    canvas {
+      border: 10px solid rgb(155, 231, 155);
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      background-color: white;
+    }
+
     button {
-      margin-top: 2rem;
-      padding: 0.7rem 1.5rem;
-      background: #00b894;
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.8rem;
+      background: #e67e22;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       font-size: 1rem;
       cursor: pointer;
+      transition: background 0.3s;
     }
+
+    button:hover {
+      background: #cf711f;
+    }
+
     #result {
-      margin-top: 1.5rem;
+      margin-top: 1.2rem;
       font-size: 1.2rem;
-      color: #2d6a4f;
+      color: #2d3436;
       font-weight: bold;
+      background: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
 
-  <h1>🎯 Spin the Eco-Wheel!</h1>
+  <div class="header">
+    <h1>🎯 Spin the Wheel</h1>
+    <div class="subtext">Try your Luck – Daily Spins Available!</div>
+  </div>
+
   <div class="pointer"></div>
   <canvas id="wheelCanvas" width="300" height="300"></canvas>
 
@@ -94,7 +131,7 @@
         ctx.translate(radius, radius);
         ctx.rotate(start + sliceAngle / 2);
         ctx.textAlign = "right";
-        ctx.fillStyle = "#333";
+        ctx.fillStyle = "#2c3e50";
         ctx.font = "14px Segoe UI";
         ctx.fillText(prizes[i], radius - 10, 5);
         ctx.restore();

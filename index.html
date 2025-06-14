@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EcoShop - Organic Haven</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <style>
     * {
       box-sizing: border-box;
@@ -14,14 +14,13 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #00fff4, #f8fcf9);
-      background-image: url('l.png');
+      background: #fff; /* White background as per latest update */
       color: #2f4f4f;
     }
 
     header {
-      background: white;
-      padding: 1rem 2rem;
+      background: #95ecd6;
+      padding: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -34,11 +33,11 @@
     .logo {
       display: flex;
       align-items: center;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
 
     .logo img {
-      height: 40px;
+      height: 35px;
       margin-right: 0.5rem;
     }
 
@@ -46,12 +45,25 @@
       color: #00b894;
     }
 
+    .Searchbar input {
+      width: 100%;
+      max-width: 300px;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 0.5rem;
+    }
+
     nav a {
-      margin-left: 1rem;
       text-decoration: none;
       color: #333;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       transition: color 0.2s ease;
     }
 
@@ -59,53 +71,95 @@
       color: #00b894;
     }
 
-    .hero-img {
-      display: flex;
-      gap: 1rem;
-      overflow-x: auto;
+    /* Slider Styles */
+    .hero-slider {
       padding: 1rem;
       background: #e8f5e9;
+      position: relative; /* For positioning pagination */
     }
 
-    .hero-img img {
-      height: 200px;
+    .swiper-container {
+      width: 100%;
+      max-width: 800px; /* Adjusted for laptop view */
+      margin: 0 auto;
+      padding-top: 1.5rem; /* Space for pagination at the top */
+    }
+
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 200px; /* Fixed height for consistency */
+      object-fit: cover; /* Ensures images scale without distortion */
       border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
     }
 
-    .hero-img img:hover {
+    .swiper-slide img:hover {
       transform: scale(1.03);
     }
 
+    .swiper-pagination {
+      position: absolute;
+      top: 0; /* Position at the top of the slider */
+      left: 0;
+      right: 0;
+      text-align: center;
+      margin-top: 0.5rem; /* Space from the very top */
+    }
+
+    .swiper-pagination-bullet {
+      background: #00b894;
+      opacity: 0.5;
+      width: 8px;
+      height: 8px;
+      margin: 0 4px;
+    }
+
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+    }
+
     .section {
-      padding: 2rem;
+      padding: 1.5rem;
+      background: linear-gradient(0deg, #b2f6e1, #42e7b8);
     }
 
     .section h2 {
       text-align: center;
-      margin-bottom: 2rem;
-      color: #007f5f;
+      margin-bottom: 1.5rem;
+      color: #01392c;
+      font-size: 1.5rem;
     }
 
     .categories {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      justify-items: center;
+      padding: 0 0.5rem;
     }
 
     .cat-card {
       background: white;
       border-radius: 12px;
-      width: 160px;
+      width: 100%;
+      max-width: 160px;
       padding: 1rem;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
       text-align: center;
-      transition: transform 0.2s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
     }
 
     .cat-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     }
 
     .cat-card img {
@@ -116,41 +170,157 @@
       margin-bottom: 0.6rem;
     }
 
+    .category {
+      color: #018f72;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
     .chatbot {
       position: fixed;
       bottom: 20px;
       right: 20px;
       background: white;
-      padding: 1rem;
-      width: 280px;
+      padding: 0.8rem;
+      width: 250px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
       border-radius: 12px;
       border-left: 5px solid #00b894;
+      display: none;
+    }
+
+    .chatbot.active {
+      display: block;
     }
 
     .chatbot h4 {
       margin-bottom: 0.5rem;
       color: #00b894;
+      font-size: 1rem;
     }
 
     .chatbot input {
       width: 100%;
-      padding: 0.6rem;
+      padding: 0.5rem;
       border: 1px solid #ccc;
       border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .chatbot-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #00b894;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     footer {
       background-color: #1b4332;
       color: white;
-      padding: 2rem 1rem;
+      padding: 1.5rem 1rem;
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     footer h2 {
       margin-top: 1rem;
       color: #a3f7bf;
+      font-size: 1.1rem;
+    }
+
+    /* Media Queries for Mobile */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 0.8rem;
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      .logo img {
+        height: 30px;
+      }
+
+      .Searchbar input {
+        max-width: 100%;
+        font-size: 0.85rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem 1rem;
+      }
+
+      nav a {
+        font-size: 0.85rem;
+      }
+
+      .swiper-container {
+        max-width: 100%;
+      }
+
+      .swiper-slide img {
+        height: 150px; /* Adjusted height for mobile */
+        max-width: 300px; /* Ensures cards don't stretch too wide */
+      }
+
+      .section h2 {
+        font-size: 1.3rem;
+      }
+
+      .categories {
+        grid-template-columns: 1fr;
+        max-width: 200px;
+        margin: 0 auto;
+      }
+
+      .cat-card {
+        max-width: 100%;
+      }
+
+      .chatbot {
+        width: 220px;
+        padding: 0.6rem;
+      }
+
+      .chatbot h4 {
+        font-size: 0.9rem;
+      }
+
+      .chatbot input {
+        font-size: 0.8rem;
+      }
+
+      footer {
+        font-size: 0.8rem;
+      }
+
+      footer h2 {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .swiper-slide img {
+        height: 120px; /* Further adjust for smaller phones */
+        max-width: 250px;
+      }
     }
   </style>
 </head>
@@ -172,10 +342,24 @@
     </nav>
   </header>
 
-  <section class="hero-img">
-    <a href="coupons.html"><img src="image.webp" alt="Coupon"></a>
-    <a href="spin_the_wheel.html"><img src="games.png.jpg" alt="Game Wheel"></a>
-    <a href="abou.html"><img src="image (2).webp" alt="About Us"></a>
+  <section class="hero-slider">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <a href="coupons.html"><img src="welcome-offer.png" alt="Coupon"></a>
+        </div>
+        <div class="swiper-slide">
+          <a href="spin_the_wheel.html"><img src="ecorewards.png" alt="Game Wheel"></a>
+        </div>
+        <div class="swiper-slide">
+          <a href="abou.html"><img src="image (2).webp" alt="About Us"></a>
+        </div>
+        <div class="swiper-slide">
+          <a href="coupons.html"><img src="welcome-offer.png" alt="Coupon"></a>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
   </section>
 
   <section class="section">
@@ -183,36 +367,476 @@
     <div class="categories">
       <a href="bodycare.html" class="cat-card">
         <img src="1-105.webp" alt="Body Care">
-        <p><strong>Body Care</strong></p>
+        <p class="category"><strong>Body Care</strong></p>
       </a>
       <a href="bamboo.html" class="cat-card">
         <img src="bamboo-india-green-background-450x.webp" alt="Bamboo">
-        <p><strong>Bamboo Products</strong></p>
+        <p class="category"><strong>Bamboo Products</strong></p>
       </a>
       <a href="health.html" class="cat-card">
         <img src="neem-turmeric-powder-combo-pack.webp" alt="Health">
-        <p><strong>Health Supplements</strong></p>
+        <p class="category"><strong>Health Supplements</strong></p>
       </a>
       <a href="organic.html" class="cat-card">
         <img src="636387731a5b8-cow-ghee-bilona-benefits-ecom-1.webp" alt="Organic Food">
-        <p><strong>Organic Food</strong></p>
+        <p class="category"><strong>Organic Food</strong></p>
       </a>
       <div class="cat-card">
         <img src="eco-friendly-leaf-icon-esnmqqmlsenajoxn.png" alt="More">
-        <p><strong>More Products...</strong></p>
+        <p class="category"><strong>More Products...</strong></p>
       </div>
     </div>
   </section>
 
+  <button class="chatbot-toggle">💬</button>
   <div class="chatbot">
     <h4>💬 Ask EcoBot</h4>
     <input type="text" placeholder="Coming Soon...">
   </div>
 
   <footer>
-    &copy; 2025 EcoShop | Built with 💚 for a cleaner planet
+    © 2025 EcoShop | Built with 💚 for a cleaner planet
     <h2>📍 Store Location</h2>
     Organic Haven, Pachrukhi, Motipur, Muzaffarpur, Bihar 843111, India
   </footer>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    // Initialize Swiper
+    const swiper = new Swiper('.swiper-container', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      slidesPerView: 1, // Show 1 slide at a time on mobile
+      spaceBetween: 10,
+      breakpoints: {
+        768: {
+          slidesPerView: 2, // Show 2 slides on laptop
+          spaceBetween: 20,
+        },
+      },
+    });
+
+    // Chatbot Toggle
+    const chatbotToggle = document.querySelector('.chatbot-toggle');
+    const chatbot = document.querySelector('.chatbot');
+    chatbotToggle.addEventListener('click', () => {
+      chatbot.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoShop - Organic Haven</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #00fff4, #f8fcf9);
+      background-image: url('l.png');
+      color: #2f4f4f;
+    }
+
+    header {
+      background: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+    }
+
+    .logo img {
+      height: 35px;
+      margin-right: 0.5rem;
+    }
+
+    .logo strong {
+      color: #00b894;
+    }
+
+    .Searchbar input {
+      width: 100%;
+      max-width: 300px;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #00b894;
+    }
+
+    /* Slider Styles */
+    .hero-slider {
+      padding: 1rem;
+      background: #e8f5e9;
+    }
+
+    .swiper-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .swiper-slide img {
+      width: 100% ;
+      height: 300px ;
+      
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .swiper-slide img:hover {
+      transform: scale(1.04);
+    }
+
+    .swiper-pagination-bullet {
+      background: #00b894;
+      opacity: 0.5;
+    }
+
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+    }
+
+    .section {
+      padding: 1.5rem;
+      background: linear-gradient(0deg, #89e7cb, #2da984);
+    }
+
+    .section h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #01392c;
+      font-size: 1.5rem;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      justify-items: center;
+      padding: 0 0.5rem;
+    }
+
+    .cat-card {
+      background: white;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 160px;
+      padding: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .cat-card img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 0.6rem;
+    }
+
+    .category {
+      color: #018f72;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+.chatbot {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      padding: 0.8rem;
+      width: 250px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      border-left: 5px solid #00b894;
+      display: none;
+    }
+
+    .chatbot.active {
+      display: block;
+    }
+
+    .chatbot h4 {
+      margin-bottom: 0.5rem;
+      color: #00b894;
+      font-size: 1rem;
+    }
+
+    .chatbot input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .chatbot-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #00b894;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+
+
+    footer {
+      background-color: #1b4332;
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    footer h2 {
+      margin-top: 1rem;
+      color: #a3f7bf;
+      font-size: 1.1rem;
+    }
+
+    /* Media Queries for Mobile */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 0.8rem;
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      .logo img {
+        height: 30px;
+      }
+
+      .Searchbar input {
+        max-width: 100%;
+        font-size: 0.85rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem 1rem;
+      }
+
+      nav a {
+        font-size: 0.85rem;
+      }
+  .chatbot {
+        width: 220px;
+        padding: 0.6rem;
+      }
+
+      .chatbot h4 {
+        font-size: 0.9rem;
+      }
+
+      .chatbot input {
+        font-size: 0.8rem;
+      }
+
+      .section h2 {
+        font-size: 1.3rem;
+      }
+
+      .categories {
+        grid-template-columns: 1fr;
+        max-width: 200px;
+        margin: 0 auto;
+      }
+
+      .cat-card {
+        max-width: 100%;
+      }
+
+      footer {
+        font-size: 0.8rem;
+      }
+
+      footer h2 {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="ecoshop-removebg-preview.webp" alt="EcoShop Logo" />
+      <strong>EcoShop</strong> Organic Haven
+    </div>
+    <div class="Searchbar">
+      <input type="text" placeholder="🔎 Search for products..." size="45">
+    </div>
+    <nav>
+      <a href="login_signup_ecoshop.html">Login</a>
+      <a href="ecoshop_my_cart.html">Cart</a>
+      <a href="abou.html">About</a>
+      <a href="Bc.html">Blog & Community</a>
+      <a href="reward.html">Eco-rewards</a>
+    </nav>
+  </header>
+
+  <section class="hero-slider">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <a href="coupons.html"><img  class= "slider-image" src="welcome-offer.png" alt="Coupon"></a>
+        </div>
+        <div class="swiper-slide">
+          <a href="spin_the_wheel.html"><img src="ecorewards.png" alt="Game Wheel"></a>
+        </div>
+        <div class="swiper-slide">
+          <a href="abou.html"><img src="image (2).webp" alt="About Us"></a>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>🌿 Explore Our Green Categories</h2>
+    <div class="categories">
+      <a href="bodycare.html" class="cat-card">
+        <img src="1-105.webp" alt="Body Care">
+        <p class="category"><strong>Body Care</strong></p>
+      </a>
+      <a href="bamboo.html" class="cat-card">
+        <img src="bamboo-india-green-background-450x.webp" alt="Bamboo">
+        <p class="category"><strong>Bamboo Products</strong></p>
+      </a>
+      <a href="health.html" class="cat-card">
+        <img src="neem-turmeric-powder-combo-pack.webp" alt="Health">
+        <p class="category"><strong>Health Supplements</strong></p>
+      </a>
+      <a href="organic.html" class="cat-card">
+        <img src="636387731a5b8-cow-ghee-bilona-benefits-ecom-1.webp" alt="Organic Food">
+        <p class="category"><strong>Organic Food</strong></p>
+      </a>
+      <div class="cat-card">
+        <img src="eco-friendly-leaf-icon-esnmqqmlsenajoxn.png" alt="More">
+        <p class="category"><strong>More Products...</strong></p>
+      </div>
+    </div>
+  </section>
+<button class="chatbot-toggle">💬</button>
+  <div class="chatbot">
+    <h4>💬 Ask EcoBot</h4>
+    <input type="text" placeholder="Coming Soon...">
+  </div>
+
+  <footer>
+    © 2025 EcoShop | Built with 💚 for a cleaner planet
+    <h2>📍 Store Location</h2>
+    Organic Haven, Pachrukhi, Motipur, Muzaffarpur, Bihar 843111, India
+  </footer>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    // Initialize Swiper
+    const swiper = new Swiper('.swiper-container', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+
+
+    // Chatbot Toggle
+    const chatbotToggle = document.querySelector('.chatbot-toggle');
+    const chatbot = document.querySelector('.chatbot');
+    chatbotToggle.addEventListener('click', () => {
+      chatbot.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
+-->
