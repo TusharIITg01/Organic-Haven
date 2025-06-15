@@ -1,66 +1,246 @@
 
+
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>🧴 Body Care Products – EcoShop</title>
-  <style>
-    body { font-family: 'Segoe UI', sans-serif; padding: 2rem;  background: #95ecd6; }
-    h1 { color: #00b894; }
-    .product {
-      margin-top: 1rem;
-      background: rgb(181, 249, 224); 
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Container</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #95ecd6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+             max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .product-card:hover {
+            transform: scale(1.02);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .product-description {
+            font-size: 12px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .product-price {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        .product-price .original {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 5px;
+        }
+
+        .product-price .discount {
+            color: #e91e63;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .quantity-selector button {
+            background-color: #ddd;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .quantity-selector input {
+            width: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 5px;
+            margin: 0 5px;
+        }
+
+        .add-to-cart {
+            background-color: #50b49c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #45a049;
+        }
+          .more-button {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background-color: #1aaf8a;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .more-button:hover {
+            background-color: #03775a;
+        }
+    </style>
 </head>
 <body>
-  <h1>🧴 Body Care Products</h1>
+   <h1>🧴 Body Care Products</h1>
+    <div class="products-container">
+        <!-- More Button -->
+        <button class="more-button">More</button>
 
-  <div class="product">
-    <h3>Herbal Face Wash</h3>
-    <p>Rs. 199 – Natural & sulfate-free</p>
-  </div>
+        <!-- Product Card 1 -->
 
-  <div class="product">
-    <h3>Organic Aloe Vera Gel</h3>
-    <p>Rs. 149 – 100% Pure & Cold Pressed</p>
-  </div>
+         <a href="product.html" class="product-card">
+            <img src="shinendglow.webp" alt="Face Wash" class="product-image">
+            <h3 class="product-title">SHINE & GLOW SKIN BRIGHTENING ORGANIC FACE WASH</h3>
+            <p class="product-description">With Orange & Licorice Extract (All Skin Types) - 100ml</p>
+            <p class="product-price">
+                <span class="original">₹995</span> ₹595 <span class="discount">(40% OFF)</span>
+            </p>
+            <div class="quantity-selector">
+                <button>-</button>
+                <input type="text" value="1" readonly>
+                <button>+</button>
+            </div>
+            <button class="add-to-cart">ADD</button>
+        </a>
+       
+ 
+        <!-- Product Card 2 -->
+         <a href="product.html" class="product-card">
+           <img src="hairfall.webp" alt="Conditioner" class="product-image">
+            <h3 class="product-title">HAIR FALL CONTROL & REPAIR ORGANIC CONDITIONER</h3>
+            <p class="product-description">With Hibiscus & Grapeseed Extract (All Hair Types) - 100ml</p>
+            <p class="product-price">
+                <span class="original">₹995</span> ₹645 <span class="discount">(35% OFF)</span>
+            </p>
+            <div class="quantity-selector">
+                <button>-</button>
+                <input type="text" value="1" readonly>
+                <button>+</button>
+            </div>
+            <button class="add-to-cart">ADD</button>
+        </a>
+        <!-- Product Card 3 -->
+       <a href="product.html" class="product-card">
+           <img src="cell renewal.webp" alt="Face Wash" class="product-image">
+            <h3 class="product-title">CELL RENEWAL ORGANIC FACE WASH</h3>
+            <p class="product-description">With Apple & Papaya Extract (All Skin Types) - 100ml</p>
+            <p class="product-price">
+                <span class="original">₹995</span> ₹595 <span class="discount">(40% OFF)</span>
+            </p>
+            <div class="quantity-selector">
+                <button>-</button>
+                <input type="text" value="1" readonly>
+                <button>+</button>
+            </div>
+            <button class="add-to-cart">ADD</button>
+        </a>
 
-  <div class="product">
-    <h3>Neem & Tulsi Soap</h3>
-    <p>Rs. 89 – Chemical-free bathing bar</p>
-  </div>
-  <div class="product">
-    <h3>Herbal Face Wash</h3>
-    <p>Rs. 199 – Natural & sulfate-free</p>
-  </div>
-  <div class="product">
-    <h3>Herbal Face Wash</h3>
-    <p>Rs. 199 – Natural & sulfate-free</p>
-  </div>
-  <div class="product">
-    <h3>Herbal Face Wash</h3>
-    <p>Rs. 199 – Natural & sulfate-free</p>
-  </div>
-  <div class="product">
-    <h3>Herbal Face Wash</h3>
-    <p>Rs. 199 – Natural & sulfate-free</p>
-  </div>
-  <div class="product">
-    <h3>Herbal Face Wash</h3>
-    <p>Rs. 199 – Natural & sulfate-free</p>
-  </div>
-  <div class="product">
-    <h3>Herbal Face Wash</h3>
-    <p>Rs. 199 – Natural & sulfate-free</p>
-  </div>
-  <div class="product">
-    <h3>Herbal Face Wash</h3>
-    <p>Rs. 199 – Natural & sulfate-free</p>
-  </div>
+  
+        <!-- Product Card 4 -->
+        <a href="product.html" class="product-card">
+         <img src="Allinone.webp" alt="Face Wash" class="product-image">
+            <h3 class="product-title">ALL IN ONE ORGANIC FACE WASH</h3>
+            <p class="product-description">With Sandalwood & Turmeric Extract (All Skin Types) - 100ml
 
+</p>
+            <p class="product-price">
+                <span class="original">₹995</span> ₹595 <span class="discount">(40% OFF)</span>
+            </p>
+            <div class="quantity-selector">
+                <button>-</button>
+                <input type="text" value="1" readonly>
+                <button>+</button>
+            </div>
+            <button class="add-to-cart">ADD</button>
+        </a>
+        <!-- Product Card 5 -->
+         <a href="product.html" class="product-card">
+             <img src="24hours.webp" alt="Face Wash" class="product-image">
+            <h3 class="product-title">24 HOURS SKIN HYDRATING ORGANIC BODY LOTION</h3>
+            <p class="product-description">With Jojoba & Olive Extract (Extra Dry Skin) - 100ml</p>
+            <p class="product-price">
+                <span class="original">₹995</span> ₹595 <span class="discount">(40% OFF)</span>
+            </p>
+            <div class="quantity-selector">
+                <button>-</button>
+                <input type="text" value="1" readonly>
+                <button>+</button>
+            </div>
+            <button class="add-to-cart">ADD</button>
+        </a>
+
+         <!-- Product Card 6 -->
+            <a href="product.html" class="product-card">
+            <img src="purifyingndacne.webp" alt="Face Wash" class="product-image">
+            <h3 class="product-title">PURIFYING & ACNE CONTROL ORGANIC FACE WASH</h3>
+            <p class="product-description">With Neem & Tulsi Extract (Oily Skin) - 100ml</p>
+            <p class="product-price">
+                <span class="original">₹995</span> ₹595 <span class="discount">(40% OFF)</span>
+            </p>
+            <div class="quantity-selector">
+                <button>-</button>
+                <input type="text" value="1" readonly>
+                <button>+</button>
+            </div>
+            <button class="add-to-cart">ADD</button>
+        </a>
+           
+        </div>
+    </div>
+   <button class="more-button">More...</button>
 </body>
 </html>

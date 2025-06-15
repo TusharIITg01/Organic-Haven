@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Product Header Section */
+        .product-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .product-image-main {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .product-image-small {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border: 2px solid #4caf50;
+            border-radius: 5px;
+        }
+
+        .product-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .product-price .original {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        .product-price .discount {
+            color: #e91e63;
+            font-size: 1rem;
+        }
+
+        .coupon-box {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .coupon-text {
+            color: #388e3c;
+        }
+
+        .coupon-code {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .add-to-cart, .buy-now {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .add-to-cart {
+            background-color: #fff;
+            border: 2px solid #4caf50;
+            color: #4caf50;
+        }
+
+        .add-to-cart:hover {
+            background-color: #f1f8e9;
+        }
+
+        .buy-now {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        .buy-now:hover {
+            background-color: #45a049;
+        }
+
+        /* Product Description Section */
+        .product-description {
+            margin: 30px 0;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-description h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .product-description p, .product-description ul {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .product-description ul {
+            padding-left: 20px;
+        }
+
+        .product-description li {
+            margin-bottom: 10px;
+        }
+
+        /* Customer Ratings Section */
+        .customer-ratings {
+            margin: 30px 0;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .customer-ratings h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .customer-ratings p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .ratings-bar {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .stars {
+            margin-right: 10px;
+            width: 70px;
+        }
+
+        progress {
+            width: 100%;
+            max-width: 200px;
+            height: 8px;
+            margin-right: 10px;
+        }
+
+        .percentage {
+            width: 40px;
+            text-align: right;
+        }
+
+        .no-reviews {
+            font-size: 1rem;
+            color: #666;
+            margin: 15px 0;
+        }
+
+        .write-review {
+            padding: 10px 20px;
+            background-color: #fff;
+            border: 2px solid #4caf50;
+            color: #4caf50;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .write-review:hover {
+            background-color: #f1f8e9;
+        }
+
+        /* Similar Products Section */
+        .similar-products {
+            margin: 30px 0;
+        }
+
+        .similar-products h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .product-card-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 5px 0;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .product-card-price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        .product-card-price .original {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 5px;
+            font-size: 0.85rem;
+        }
+
+        .product-card-price .discount {
+            color: #e91e63;
+            font-size: 0.85rem;
+        }
+
+        .add-button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .add-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .product-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .product-image, .product-details {
+                min-width: 100%;
+            }
+
+            .product-image-main {
+                max-height: 300px;
+            }
+
+            .product-title {
+                font-size: 1.25rem;
+            }
+
+            .product-price {
+                font-size: 1.1rem;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .add-to-cart, .buy-now {
+                width: 100%;
+            }
+
+            .product-description h2, .customer-ratings h2, .similar-products h2 {
+                font-size: 1.25rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .product-card-title {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .product-image-main {
+                max-height: 250px;
+            }
+
+            .product-image-small {
+                width: 60px;
+                height: 60px;
+            }
+
+            .product-title {
+                font-size: 1.1rem;
+            }
+
+            .product-price {
+                font-size: 1rem;
+            }
+
+            .coupon-box {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .product-description p, .product-description ul {
+                font-size: 0.9rem;
+            }
+
+            .customer-ratings p, .no-reviews {
+                font-size: 0.9rem;
+            }
+
+            .write-review {
+                width: 100%;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Product Header Section -->
+        <div class="product-header">
+            <div class="product-image">
+                <img src="shinendglow.webp" alt="Face Wash" class="product-image-main">
+                <img src="shinendglow.webp" alt="Face Wash Small" class="product-image-small">
+            </div>
+            <div class="product-details">
+                <h1 class="product-title">All in 1 Organic Face Wash With Sandalwood & Turmeric Extract (ALL Skin Types) - 100ml</h1>
+                <p class="product-price">
+                    <span class="original">₹995</span> ₹695 <span class="discount">(30% OFF)</span>
+                </p>
+                <div class="coupon-box">
+                    <span class="coupon-text">Best price: ₹590.75 <span class="coupon-code">Use coupon: WELCOME15</span></span>
+                    <span class="coupon-text">1 more coupon</span>
+                </div>
+                <div class="buttons">
+                    <button class="add-to-cart">Add to cart</button>
+                    <button class="buy-now">Buy now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Description Section -->
+        <div class="product-description">
+            <h2>Product details</h2>
+            <p>The clock ticks on your pending projects</p>
+            <p>A meet-up with friends awaits you tonight</p>
+            <p>Empty containers hint that the shopping’s due</p>
+            <p>A special someone waits for your phone call</p>
+            <p>With so many things already on your plate</p>
+            <p>Your skincare routine takes a back seat</p>
+            <p>Revive a loving connection with your delicate skin through a wholesome blend of nature. Indulge in healthy nourishment and cleansing using potent ingredients that ward off all skin problems.</p>
+            <p>Dealing with acne, wrinkles, skin tanning, and allergies can be pretty distressing. But what if your facewash alone could wipe them off? Meet your All-in-1 Organic Face Wash with Sandalwood and Turmeric Extract. Let us show you how!</p>
+            <ul>
+                <li>Clogging of skin pores due to oil and bacteria</li>
+                <li>Usage of skin-care products composed of chemicals</li>
+                <li>Excessive exposure to the sun’s rays and environment</li>
+                <li>Our facewash offers powerful protection against all these factors with ingredients that are harmless and gentle on your skin. To treat acne, we have used Orange and Neem Extracts. They are infused with exfoliating and antibacterial properties to cleanse your skin pores and prevent the buildup of acne-causing bacteria. Being a source of amino acids, Licorice Extracts have been added to provide moisturization and nourishment to the skin.</li>
+                <li>To prevent the damage done by the sun and heat, we have used natural Turmeric and Sandalwood Oil. These ingredients are laced with the anti-tanning properties and also help in dealing with various skin problems like acne, wrinkles, dark circles, eczema, or psoriasis.</li>
+            </ul>
+        </div>
+
+        <!-- Customer Ratings Section -->
+        <div class="customer-ratings">
+            <h2>Customer Ratings</h2>
+            <p>0 Customer rating</p>
+            <div class="ratings-bar">
+                <span class="stars">5 Stars</span>
+                <progress value="0" max="100"></progress>
+                <span class="percentage">0%</span>
+            </div>
+            <div class="ratings-bar">
+                <span class="stars">4 Stars</span>
+                <progress value="0" max="100"></progress>
+                <span class="percentage">0%</span>
+            </div>
+            <div class="ratings-bar">
+                <span class="stars">3 Stars</span>
+                <progress value="0" max="100"></progress>
+                <span class="percentage">0%</span>
+            </div>
+            <div class="ratings-bar">
+                <span class="stars">2 Stars</span>
+                <progress value="0" max="100"></progress>
+                <span class="percentage">0%</span>
+            </div>
+            <div class="ratings-bar">
+                <span class="stars">1 Star</span>
+                <progress value="0" max="100"></progress>
+                <span class="percentage">0%</span>
+            </div>
+            <p class="no-reviews">No Reviews</p>
+            <p>Be the first to review this product</p>
+            <button class="write-review">Write a review</button>
+        </div>
+
+        <!-- Similar Products Section -->
+        <div class="similar-products">
+            <h2>Similar products</h2>
+            <div class="products-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card">
+                    <img src="shinendglow.webp" alt="Face Wash" class="product-image">
+                    <h3 class="product-card-title">Purifying & Acne Control Organic Face Wash With Neem & Tulsi Extract (Oily Skin) - 100ml</h3>
+                    <p class="product-card-price">
+                        <span class="original">₹995</span> ₹695 <span class="discount">(30% OFF)</span>
+                    </p>
+                    <button class="add-button">ADD</button>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="product-card">
+                    <img src="hairfall.webp" alt="Hair Oil" class="product-image">
+                    <h3 class="product-card-title">Hair Fall Control & Repair Organic Hair Oil With Sesame Oil & Methi Extract (All Hair Types) - 100ml</h3>
+                    <p class="product-card-price">
+                        <span class="original">₹995</span> ₹795 <span class="discount">(47% OFF)</span>
+                    </p>
+                    <button class="add-button">ADD</button>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="product-card">
+                    <img src="cell renewal.webp" alt="Face Wash" class="product-image">
+                    <h3 class="product-card-title">All in 1 Organic Face Wash With Sandalwood & Turmeric Extract (All Skin Types) - 100ml</h3>
+                    <p class="product-card-price">
+                        <span class="original">₹995</span> ₹695 <span class="discount">(30% OFF)</span>
+                    </p>
+                    <button class="add-button">ADD</button>
+                </div>
+
+                <!-- Product Card 4 -->
+                <div class="product-card">
+                    <img src="Allinone.webp" alt="Face Wash" class="product-image">
+                    <h3 class="product-card-title">Purifying & Acne Control Organic Face Wash With Neem & Tulsi Extract (Oily Skin) - 100ml</h3>
+                    <p class="product-card-price">
+                        <span class="original">₹995</span> ₹695 <span class="discount">(30% OFF)</span>
+                    </p>
+                    <button class="add-button">ADD</button>
+                </div>
+
+                <!-- Product Card 5 -->
+                <div class="product-card">
+                    <img src="24hours.webp" alt="Hair Oil" class="product-image">
+                    <h3 class="product-card-title">Hair Fall Control & Repair Organic Hair Oil With Sesame Oil & Methi Extract (All Hair Types) - 100ml</h3>
+                    <p class="product-card-price">
+                        <span class="original">₹995</span> ₹795 <span class="discount">(47% OFF)</span>
+                    </p>
+                    <button class="add-button">ADD</button>
+                </div>
+
+                <!-- Product Card 6 -->
+                <div class="product-card">
+                    <img src="purifyingndacne.webp" alt="Face Wash" class="product-image">
+                    <h3 class="product-card-title">All in 1 Organic Face Wash With Sandalwood & Turmeric Extract (All Skin Types) - 100ml</h3>
+                    <p class="product-card-price">
+                        <span class="original">₹995</span> ₹695 <span class="discount">(30% OFF)</span>
+                    </p>
+                    <button class="add-button">ADD</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

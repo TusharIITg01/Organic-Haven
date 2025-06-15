@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,8 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #fff; /* White background as per latest update */
+      background: #fff;
+      /* White background as per latest update */
       color: #2f4f4f;
     }
 
@@ -74,15 +76,17 @@
     /* Slider Styles */
     .hero-slider {
       padding: 1rem;
-      background: #e8f5e9;
-      position: relative; /* For positioning pagination */
+      background: #f3f6c6;
+      position: relative;
+      /* For positioning pagination */
     }
 
     .swiper-container {
       width: 100%;
-      max-width: 800px; /* Adjusted for laptop view */
+      max-width: 800px;
+      /* Adjusted for laptop view */
       margin: 0 auto;
-      padding-top: 1.5rem; /* Space for pagination at the top */
+      
     }
 
     .swiper-slide {
@@ -93,10 +97,12 @@
 
     .swiper-slide img {
       width: 100%;
-      height: 200px; /* Fixed height for consistency */
-      object-fit: cover; /* Ensures images scale without distortion */
+      height: 300px;
+      /* Fixed height for consistency */
+      object-fit: contain;
+      /* Ensures images scale without distortion */
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(31, 23, 23, 0.1);
       transition: transform 0.3s ease;
     }
 
@@ -106,15 +112,17 @@
 
     .swiper-pagination {
       position: absolute;
-      top: 0; /* Position at the top of the slider */
+      top: 0;
+      /* Position at the top of the slider */
       left: 0;
       right: 0;
       text-align: center;
-      margin-top: 0.5rem; /* Space from the very top */
+      margin-top: 0.5rem;
+      /* Space from the very top */
     }
 
     .swiper-pagination-bullet {
-      background: #00b894;
+      background: #1e6255;
       opacity: 0.5;
       width: 8px;
       height: 8px;
@@ -144,6 +152,8 @@
       justify-items: center;
       padding: 0 0.5rem;
     }
+
+
 
     .cat-card {
       background: white;
@@ -175,6 +185,82 @@
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 600;
+    }
+
+
+    .product-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      padding: 15px;
+      transition: transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .product-card:hover {
+      transform: scale(1.02);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .product-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 5px 0;
+      color: #018f72;
+    }
+
+    .product-description {
+      font-size: 12px;
+      color: #666;
+      margin: 5px 0;
+    }
+
+    .product-price {
+      font-size: 14px;
+      font-weight: bold;
+      color: #018f72;
+      margin: 5px 0;
+    }
+
+    .product-price .original {
+      text-decoration: line-through;
+      color: #33b382;
+      margin-right: 5px;
+    }
+
+    .offers {
+      background: linear-gradient(0deg, #f1efe5, #ed8383);
+      text-align: center;
+     
+    }
+  .flat{
+    margin-bottom: 15px;
+    padding-top: 15px;
+  }
+
+    .reviews {
+      margin-top: 45px;
+       background: linear-gradient(0deg, #dff0ea, #5fedc5);
+      text-align: center;
+      
+    }
+
+    .review {
+      color: black;
+      font-size: 10px;
+display: inline-block;
+height: 50px;
+width: 40vw;
+flex-direction: row;
     }
 
     .chatbot {
@@ -276,8 +362,10 @@
       }
 
       .swiper-slide img {
-        height: 150px; /* Adjusted height for mobile */
-        max-width: 300px; /* Ensures cards don't stretch too wide */
+        height: 150px;
+        /* Adjusted height for mobile */
+        max-width: 300px;
+        /* Ensures cards don't stretch too wide */
       }
 
       .section h2 {
@@ -318,12 +406,14 @@
 
     @media (max-width: 480px) {
       .swiper-slide img {
-        height: 120px; /* Further adjust for smaller phones */
+        height: 120px;
+        /* Further adjust for smaller phones */
         max-width: 250px;
       }
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="logo">
@@ -352,10 +442,10 @@
           <a href="spin_the_wheel.html"><img src="ecorewards.png" alt="Game Wheel"></a>
         </div>
         <div class="swiper-slide">
-          <a href="abou.html"><img src="image (2).webp" alt="About Us"></a>
+          <a href="abou.html"><img src="DV7SJ0VTszAsN2OvOXssw.jpg" alt="About Us"></a>
         </div>
         <div class="swiper-slide">
-          <a href="coupons.html"><img src="welcome-offer.png" alt="Coupon"></a>
+          <a href="coupons.html"><img src="-iZ4OdLwoPB5xqyjAAsKj.jpg" alt="Coupon"></a>
         </div>
       </div>
       <div class="swiper-pagination"></div>
@@ -363,7 +453,7 @@
   </section>
 
   <section class="section">
-    <h2>🌿 Explore Our Green Categories</h2>
+    <h1 style="padding-bottom: 15px; color: ;">🌿 Explore Our Green Categories</h1>
     <div class="categories">
       <a href="bodycare.html" class="cat-card">
         <img src="1-105.webp" alt="Body Care">
@@ -377,17 +467,119 @@
         <img src="neem-turmeric-powder-combo-pack.webp" alt="Health">
         <p class="category"><strong>Health Supplements</strong></p>
       </a>
+
       <a href="organic.html" class="cat-card">
         <img src="636387731a5b8-cow-ghee-bilona-benefits-ecom-1.webp" alt="Organic Food">
         <p class="category"><strong>Organic Food</strong></p>
       </a>
+
       <div class="cat-card">
         <img src="eco-friendly-leaf-icon-esnmqqmlsenajoxn.png" alt="More">
         <p class="category"><strong>More Products...</strong></p>
       </div>
     </div>
   </section>
+  <div class="offers">
+    <div class="flat">
+<h1> 🛍️ Flat 25% Off! 🎉💚</h1>
+<p> Grab It Now! 🌱 </p>
+    </div>
+    
+    <div class="categories">
 
+      <a href="product.html" class="cat-card">
+        <img src="Oraganiccow.webp" alt="Face Wash" class="product-image">
+        <h3 class="product-title">Organic Cow Bilona Ghee</h3>
+
+        <p class="product-price">
+          <span class="original">₹995</span> ₹595
+        </p>
+
+      </a>
+      <a href="product.html" class="cat-card">
+        <img src="perfecteco.webp" alt="Face Wash" class="product-image">
+        <h3 class="product-title">Perfect Eco-Friendly Disposable Party Pack</h3>
+
+        <p class="product-price">
+          <span class="original">₹999</span> ₹699
+        </p>
+
+      </a>
+      <a href="product.html" class="cat-card">
+        <img src="lampshade.webp" alt="Face Wash" class="product-image">
+        <h3 class="product-title">Designer Table Lampshade</h3>
+
+        <p class="product-price">
+          <span class="original">₹999</span> ₹490
+        </p>
+
+      </a>
+      <a href="product.html" class="cat-card">
+        <img src="refreshing.webp" alt="Face Wash" class="product-image">
+        <h3 class="product-title">Refreshing & Age Defence Shower Gel With Acai Berry Fruit Extract</h3>
+
+        <p class="product-price">
+          <span class="original">₹1495</span> ₹895
+        </p>
+
+      </a>
+    </div>
+
+    <div class="reviews">
+      <h1 class="flat">🌍 Hear From Our Happy Eco-Warriors! 🌟🌱</h1>
+      <div class="categories">
+        <a href="product.html" class="cat-card">
+          <img src="cust1.jpg" alt="Face Wash" class="product-image">
+
+          <p class="review">
+
+
+            Anjali, 21 - Delhi
+
+            EcoShop makes sustainable living easy. Products are high quality and truly eco-friendly. My favorite is
+            their bamboo toothbrush!
+          </p>
+
+        </a>
+        <a href="product.html" class="cat-card">
+          <img src="cust2.jpg" alt="Face Wash" class="product-image">
+
+
+          <p class="review">
+            Rohan, 23 - Mumbai
+
+            Finding verified green products used to be hard. EcoShop's curated selection is a game-changer for conscious
+            shopping.
+          </p>
+
+        </a>
+        <a href="product.html" class="cat-card">
+          <img src="cust3.jpg" alt="Face Wash" class="product-image">
+
+
+          <p class="review">
+            Priya, 20 - Bengaluru
+
+            Finally, a platform for my values! The prices are fair, and the product descriptions are very helpful.
+          </p>
+
+        </a>
+
+        <a href="product.html" class="cat-card">
+          <img src="cust4.jpg" alt="Face Wash" class="product-image">
+
+
+          <p class="review">
+            Amit, 22 - Chennai
+
+            I appreciate EcoShop's mission. Their delivery is quick, and the packaging is always plastic-free. Highly
+            recommend!
+          </p>
+
+        </a>
+      </div>
+    </div>
+  </div>
   <button class="chatbot-toggle">💬</button>
   <div class="chatbot">
     <h4>💬 Ask EcoBot</h4>
@@ -431,6 +623,7 @@
     });
   </script>
 </body>
+
 </html>
 
 
@@ -808,35 +1001,4 @@
     <input type="text" placeholder="Coming Soon...">
   </div>
 
-  <footer>
-    © 2025 EcoShop | Built with 💚 for a cleaner planet
-    <h2>📍 Store Location</h2>
-    Organic Haven, Pachrukhi, Motipur, Muzaffarpur, Bihar 843111, India
-  </footer>
-
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script>
-    // Initialize Swiper
-    const swiper = new Swiper('.swiper-container', {
-      loop: true,
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    });
-
-
-    // Chatbot Toggle
-    const chatbotToggle = document.querySelector('.chatbot-toggle');
-    const chatbot = document.querySelector('.chatbot');
-    chatbotToggle.addEventListener('click', () => {
-      chatbot.classList.toggle('active');
-    });
-  </script>
-</body>
-</html>
--->
+  
